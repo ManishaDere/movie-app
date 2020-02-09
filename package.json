@@ -30,5 +30,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "App using HTML, Sass, React, Redux, connected-react-router new for migrating from v4 to v5/v6 and used in above react v16",
+  "main": "index.js",
+  "repository": "https://github.com/ManishaDere/movie-app",
+  "author": "ManishaDere <manu.pathare263@gmail.com>",
+  "license": "MIT"
 }
