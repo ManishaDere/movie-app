@@ -16,7 +16,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */ }
       <> { /* your usual react-router v4/v5 routing */ }
         <Switch>
-          <Route exact path="/" render={() => (<div>Match</div>)} />
+          <Route exact path="/" component={App} />
           <Route render={() => (<div>Miss</div>)} />
         </Switch>
       </>
