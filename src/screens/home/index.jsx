@@ -8,17 +8,25 @@ import { getMoviesByType,
 import MovieList from './MovieList';
 import './home.scss';
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
 	render() {
+		const {
+      getMoviesByType,
+      movieType,
+      // setSelectedMovie
+    } = this.props;
+    console.log("props==>", movieType);
 		return (
 			<Container>
 				<MovieList
 					category={MOVIE_CATEGORY.LATEST}
 					getMoviesByType={getMoviesByType}
+					movieType={movieType}
 				/>
 				<MovieList
 					category={MOVIE_CATEGORY.TRENDING}
 					getMoviesByType={getMoviesByType}
+					movieType={movieType}
 				/>
 			</Container>
 		);
@@ -28,70 +36,30 @@ class Home extends React.Component {
 const mapDispatchToProps = dispatch => ({
   getMoviesByType: type => dispatch(getMoviesByType(type))
 });
+const mapStateToProps = state => {
+  const { movieType, movieReducer } = state;
+  console.log("state==>", state);
+  // const { selectedMovie } = movieType;
+  // const { info } = movieReducer;
+  return {
+    movieType,
+    // selectedMovie,
+    // info
+  };
+};
 
 // export default Home;
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(Home);
 
 
+// const mapDispatchToProps = dispatch => ({
+//   getMoviesByType: type => dispatch(getMoviesByType(type)),
+//   // setSelectedMovie: id => dispatch(setSelectedMovie(id)),
+//   // fetchMovie: id => dispatch(fetchMovie(id)),
+//   // clearSelectedMovie: () => dispatch(clearSelectedMovie())
+// });
 
-
-
-
-
-import { fetchMovie } from '../../actions/movie-actions';
-import './home.scss';
-
-class Home extends React.PureComponent {
-  render() {
-    const {
-      getMoviesByType,
-      movieType,
-      setSelectedMovie
-    } = this.props;
-    return (
-      <Container>
-        <MovieList
-          type={MOVIE_CATEGORY.LATEST}
-          getMoviesByType={getMoviesByType}
-          movieType={movieType}
-          setSelectedMovie={setSelectedMovie}
-        />
-        <MovieList
-          type={MOVIE_CATEGORY.TRENDING}
-          getMoviesByType={getMoviesByType}
-          movieType={movieType}
-          setSelectedMovie={setSelectedMovie}
-        />
-        {/*<MovieDetailsPopup*/}
-        {/*    clearSelectedMovie={clearSelectedMovie}*/}
-        {/*    selectedMovie={selectedMovie}*/}
-        {/*    fetchMovie={fetchMovie}*/}
-        {/*    info={info}*/}
-        {/*/>*/}
-      </Container>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  const { movieType, movieReducer } = state;
-  const { selectedMovie } = movieType;
-  const { info } = movieReducer;
-  return {
-    movieType,
-    selectedMovie,
-    info
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  getMoviesByType: type => dispatch(getMoviesByType(type)),
-  setSelectedMovie: id => dispatch(setSelectedMovie(id)),
-  fetchMovie: id => dispatch(fetchMovie(id)),
-  clearSelectedMovie: () => dispatch(clearSelectedMovie())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// export default connect(null, mapDispatchToProps)(Home);

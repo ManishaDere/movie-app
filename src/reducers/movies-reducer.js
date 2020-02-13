@@ -6,6 +6,8 @@ import {
 
 export default (state = {}, action) => {
   const { type, payload } = action;
+  console.log("action==>", action);
+  console.log("state==>", state);
   switch (type) {
     // case SET_SELECTED_MOVIE:
     case SET_MOBILE_TYPE_RESPONSE:
